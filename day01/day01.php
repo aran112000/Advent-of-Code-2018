@@ -15,8 +15,7 @@ $cnt = count($freqs);
 $seen = [];
 $value = 0;
 while (true) {
-	$freq = $freqs[$i%$cnt];
-	$value += $freq;
+	$value += $freqs[$i%$cnt];
 	if (isset($seen[$value])) {
 		echo 'Part 2: ' . $value . PHP_EOL;
 		break;
