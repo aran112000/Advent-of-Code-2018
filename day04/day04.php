@@ -40,4 +40,24 @@ foreach ($guard_details as $id => $minute_details) {
 	}
 }
 
-echo $longest_sleeping_guard * $best_minute . PHP_EOL;
+echo 'Part 1: ' . $longest_sleeping_guard * $best_minute . PHP_EOL;
+
+$most_consistent_guard = [
+	'id' => null,
+	'minute' => null,
+	'frequency' => 0
+];
+foreach ($guard_details as $id => $minute_details) {
+	asort($minute_details);
+	$max = max($minute_details);
+	$best_minute = array_search($max, $minute_details);
+	if ($max > $most_consistent_guard['frequency']) {
+		$most_consistent_guard = [
+			'id' => $id,
+			'minute' => $best_minute,
+			'frequency' => $max
+		];
+	}
+}
+
+echo 'Part 2: ' . $most_consistent_guard['id'] * $most_consistent_guard['minute'] . PHP_EOL;
